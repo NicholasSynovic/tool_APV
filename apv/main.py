@@ -6,10 +6,7 @@ import click
 import requests
 from bs4 import BeautifulSoup, ResultSet, Tag
 
-import src
-import src.download
-import src.htmlParser
-import src.textParser
+import apv
 
 
 @click.command()
@@ -47,7 +44,7 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
         "proceedings_books": [],
     }
 
-    resp: requests.Response = src.download.getAuthorPublications(
+    resp: requests.Response = apv.getAuthorPublications(
         authorID=authorID,
     )
 
@@ -58,7 +55,7 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
 
     soup: BeautifulSoup = BeautifulSoup(markup=resp.content, features="lxml")
 
-    journals: ResultSet[Tag] = src.htmlParser.readJournalMagazineNames(
+    journals: ResultSet[Tag] = apv.readJournalMagazineNames(
         soup=soup,
     )
 
@@ -69,7 +66,7 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
 
         data["journals_magazines"].append(journal.text)
 
-    proceedings: ResultSet[Tag] = src.htmlParser.readProceedingsBookNames(
+    proceedings: ResultSet[Tag] = apv.readProceedingsBookNames(
         soup=soup,
     )
 
