@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "apv"
-version = "0.0.1"
+version = "0.0.2"
 description = "A utility to get ACM Author publication venues"
 license = "GNU Affero"
 authors = ["Nicholas M. Synovic <nicholas.synovic@gmail.com>"]
