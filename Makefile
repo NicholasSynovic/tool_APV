@@ -4,6 +4,7 @@ build:
 
 create-dev:
 	pre-commit install
+	pre-commit autoupdate
 	rm -rf env
 	python3.10 -m venv env
 	( \
