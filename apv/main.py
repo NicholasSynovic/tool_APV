@@ -39,6 +39,11 @@ import apv
     ),
 )
 def main(authorID: str, outputPath: pathlib.Path) -> None:
+    """
+    A utility to get ACM Author publication venues.
+
+    An Exception is thrown if the author ID is invalid.
+    """
     data: dict[str, typing.List[str]] = {
         "journals_magazines": [],
         "proceedings_books": [],
