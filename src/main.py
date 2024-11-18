@@ -64,8 +64,11 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
 
     journal: Tag
     for journal in journals:
-        journalAcronymn: str = src.textParser.getAcronymn(text=journal.text)
-        data["journals_magazines"].append(journalAcronymn)
+        if journal.text is None:
+            continue
+
+        # journalAcronymn: str = src.textParser.getAcronymn(text=journal.text)
+        data["journals_magazines"].append(journal.text)
 
     proceedings: ResultSet[Tag] = src.htmlParser.readProceedingsBookNames(
         soup=soup,
@@ -73,10 +76,10 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
 
     proceeding: Tag
     for proceeding in proceedings:
-        proceedingAcronymn: str = src.textParser.getAcronymn(
-            text=proceeding.text,
-        )
-        data["proceedings_books"].append(proceedingAcronymn)
+        # proceedingAcronymn: str = src.textParser.getAcronymn(
+        #     text=proceeding.text,
+        # )
+        data["proceedings_books"].append(proceeding.text)
 
     df: pandas.DataFrame = pandas.DataFrame(data=data)
     df.to_csv(path_or_buf=outputPath)
