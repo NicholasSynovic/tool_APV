@@ -9,6 +9,7 @@
   - [About](#about)
   - [How To Install](#how-to-install)
   - [How To Run](#how-to-run)
+  - [Documentation](#documentation)
 
 ## About
 
@@ -47,3 +48,7 @@ Options:
 ```
 
 **NOTE**: by default, my (Nicholas M. Synovic's) ACM DL author ID is used
+
+## Documentation
+
+API docs are provided for the project within the source files.
