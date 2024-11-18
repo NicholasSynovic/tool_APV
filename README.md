@@ -10,6 +10,7 @@
   - [How To Install](#how-to-install)
   - [How To Run](#how-to-run)
   - [Documentation](#documentation)
+    - [JSON Schema](#json-schema)
 
 ## About
 
@@ -52,3 +53,39 @@ Options:
 ## Documentation
 
 API docs are provided for the project within the source files.
+
+### JSON Schema
+
+The output JSON data follows this schema:
+
+```json
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Apv",
+    "definitions": {
+        "APV": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "journals_magazines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "proceedings_books": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "journals_magazines",
+                "proceedings_books"
+            ],
+            "title": "APV"
+        }
+    }
+}
+```
