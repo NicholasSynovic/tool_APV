@@ -7,6 +7,8 @@ import requests
 from bs4 import BeautifulSoup, ResultSet, Tag
 
 import src
+import src.download
+import src.htmlParser
 import src.textParser
 
 
