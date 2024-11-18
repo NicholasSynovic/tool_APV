@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "apv"
-version = "0.1.0"
-description = "Hello World"
+version = "0.0.1"
+description = "A utility to get ACM Author publication venues"
 license = "GNU Affero"
 authors = ["Nicholas M. Synovic <nicholas.synovic@gmail.com>"]
 readme = "README.md"
 homepage = "https://github.com/NicholasSynovic/template_python"
 repository = "https://github.com/NicholasSynovic/template_python"
-keywords = ["Template"]
+keywords = ["acm", "publications"]
 classifiers = ["Development Status :: 1 - Planning"]
 
 [tool.poetry.dependencies]
@@ -21,3 +21,6 @@ lxml = "^5.3.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+apv = "apv.main:main"
