@@ -1,8 +1,8 @@
+import json
 import pathlib
 import typing
 
 import click
-import pandas
 import requests
 from bs4 import BeautifulSoup, ResultSet, Tag
 
@@ -30,8 +30,8 @@ import src.textParser
     "outputPath",
     nargs=1,
     required=False,
-    help="Output CSV path",
-    default=pathlib.Path("./output.csv"),
+    help="Output JSON path",
+    default=pathlib.Path("./output.json"),
     show_default=True,
     type=click.Path(
         exists=False,
@@ -67,7 +67,6 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
         if journal.text is None:
             continue
 
-        # journalAcronymn: str = src.textParser.getAcronymn(text=journal.text)
         data["journals_magazines"].append(journal.text)
 
     proceedings: ResultSet[Tag] = src.htmlParser.readProceedingsBookNames(
@@ -76,13 +75,9 @@ def main(authorID: str, outputPath: pathlib.Path) -> None:
 
     proceeding: Tag
     for proceeding in proceedings:
-        # proceedingAcronymn: str = src.textParser.getAcronymn(
-        #     text=proceeding.text,
-        # )
         data["proceedings_books"].append(proceeding.text)
 
-    df: pandas.DataFrame = pandas.DataFrame(data=data)
-    df.to_csv(path_or_buf=outputPath)
+    json.dump(obj=data, fp=open(file=outputPath, mode="w"), indent=4)
 
 
 if __name__ == "__main__":
